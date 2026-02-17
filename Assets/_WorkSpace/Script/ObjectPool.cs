@@ -23,6 +23,24 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Transform _parent;
 
     /// <summary>
+    /// Pool‚Ì‰Šú‰»ˆ—
+    /// </summary>
+    void InitializePool()
+    {
+        for (int i = 0; i < _pdArray.Length; i++)
+        {
+            _pdArray[i].pool = new();
+            for (int j = 0; j < _pdArray[i].poolSize; j++)
+            {
+                GameObject prefab = Instantiate(_pdArray[i].prefab);
+                prefab.SetActive(false);
+                prefab.transform.SetParent(_parent);
+                _pdArray[i].pool.Enqueue(prefab);
+            }
+        }
+    }
+
+    /// <summary>
     /// Pool‚©‚çæ“¾‚µ‚½Object‚ğ¶¬‚·‚é
     /// </summary>
     /// <param name="objectType"></param>
