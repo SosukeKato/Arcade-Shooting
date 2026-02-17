@@ -23,6 +23,21 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] Transform _parent;
 
     /// <summary>
+    /// Pool‚©‚çæ“¾‚µ‚½Object‚ğ¶¬‚·‚é
+    /// </summary>
+    /// <param name="objectType"></param>
+    /// <param name="quaternion"></param>
+    /// <param name="index"></param>
+    void SpawnObject(PoolType objectType, Quaternion quaternion, int index)
+    {
+        GameObject bullet = GetObject((int)objectType);
+
+        _pdArray[(int)objectType].objectList.Add(bullet);
+
+        bullet.transform.SetPositionAndRotation(_pdArray[(int)objectType].activePosition[index].position, quaternion);
+    }
+
+    /// <summary>
     /// Pool‚©‚çObject‚ğæ“¾
     /// </summary>
     /// <param name="index"></param>
