@@ -47,4 +47,27 @@ public class ObjectPool : MonoBehaviour
 
         return prefab;
     }
+
+    /// <summary>
+    /// PoolにObjectを返却
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="prefab"></param>
+    void ReturnObject(int index, GameObject prefab)
+    {
+        if (prefab == null)
+        {
+            return;
+        }
+
+        if (index < 0 || index >= _pdArray[index].pool.Count)
+        {
+            Debug.LogError($"インデックス{index}が範囲外までいっちゃったやでどうするやで？");
+            return;
+        }
+
+        prefab.SetActive(false);
+        prefab.transform.SetParent(_parent);
+        _pdArray[index].pool.Enqueue(prefab);
+    }
 }
