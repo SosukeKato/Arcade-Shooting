@@ -4,16 +4,17 @@ using UnityEngine.InputSystem;
 public class PlayerActionController : MonoBehaviour
 {
     PlayerInput playerInput;
-    bool _playerAttackGetKey;
     bool _playerAttackGetKeyDown;
     bool _playerAttackGetKeyUp;
+    bool _reloadGetKeyDown;
+    bool _isClick;
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        _playerAttackGetKey = playerInput.actions["Attack"].IsPressed();
         _playerAttackGetKeyDown = playerInput.actions["Attack"].WasPressedThisFrame();
         _playerAttackGetKeyUp = playerInput.actions["Attack"].WasReleasedThisFrame();
+        _reloadGetKeyDown = playerInput.actions["Reload"].WasPressedThisFrame();
     }
     void Start()
     {
@@ -22,6 +23,18 @@ public class PlayerActionController : MonoBehaviour
 
     void Update()
     {
-        
+        if (_playerAttackGetKeyDown)
+        {
+            _isClick = true;
+        }
+        else if (_playerAttackGetKeyUp)
+        {
+            _isClick = false;
+        }
+
+        if (_isClick)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
     }
 }
