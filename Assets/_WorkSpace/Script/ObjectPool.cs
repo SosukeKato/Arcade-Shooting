@@ -24,7 +24,7 @@ public class ObjectPool : MonoBehaviour
     /// <summary>
     /// PoolÇÃèâä˙âªèàóù
     /// </summary>
-    void InitializePool()
+    public void InitializePool()
     {
         for (int i = 0; i < _pdArray.Length; i++)
         {
@@ -45,7 +45,7 @@ public class ObjectPool : MonoBehaviour
     /// <param name="objectType"></param>
     /// <param name="quaternion"></param>
     /// <param name="index"></param>
-    void SpawnObject(PoolType objectType, Quaternion quaternion, int index)
+    public void SpawnObject(PoolType objectType, Quaternion quaternion, int index)
     {
         GameObject bullet = GetObject((int)objectType);
 
@@ -85,7 +85,7 @@ public class ObjectPool : MonoBehaviour
     /// </summary>
     /// <param name="index"></param>
     /// <param name="prefab"></param>
-    void ReturnObject(int index, GameObject prefab)
+    public void ReturnObject(int index, GameObject prefab)
     {
         if (prefab == null)
         {
