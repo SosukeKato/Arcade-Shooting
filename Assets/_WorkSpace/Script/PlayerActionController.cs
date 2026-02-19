@@ -16,12 +16,8 @@ public class PlayerActionController : MonoBehaviour
         _playerAttackGetKeyUp = playerInput.actions["Attack"].WasReleasedThisFrame();
         _reloadGetKeyDown = playerInput.actions["Reload"].WasPressedThisFrame();
     }
-    void Start()
-    {
-        
-    }
 
-    void Update()
+    public void Tick()
     {
         if (_playerAttackGetKeyDown)
         {
