@@ -33,4 +33,12 @@ public class PlayerActionController : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
     }
+
+    public void Reload(int magazine, int magazineMax)
+    {
+        if (_reloadGetKeyDown)
+        {
+            magazine = magazineMax;
+        }
+    }
 }
