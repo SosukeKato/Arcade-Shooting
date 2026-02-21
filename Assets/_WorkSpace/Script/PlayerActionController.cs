@@ -7,6 +7,10 @@ public class PlayerActionController
     InputAction _reload;
     bool _isClick;
 
+    /// <summary>
+    /// コンストラクタ(なんかピュアクラスで使えるAwake的なものらしい)
+    /// </summary>
+    /// <param name="playerInput"></param>
     public PlayerActionController(PlayerInput playerInput)
     {
         _playerAttack = playerInput.actions["Attack"];
