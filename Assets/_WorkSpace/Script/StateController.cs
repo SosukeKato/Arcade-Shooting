@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class StateController
 {
     public enum GameState
