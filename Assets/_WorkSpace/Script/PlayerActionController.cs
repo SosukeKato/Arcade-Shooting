@@ -1,29 +1,25 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerActionController : MonoBehaviour
+public class PlayerActionController
 {
-    PlayerInput playerInput;
-    bool _playerAttackGetKeyDown;
-    bool _playerAttackGetKeyUp;
-    bool _reloadGetKeyDown;
+    InputAction _playerAttack;
+    InputAction _reload;
     bool _isClick;
 
-    void Awake()
+    public PlayerActionController(PlayerInput playerInput)
     {
-        playerInput = GetComponent<PlayerInput>();
-        _playerAttackGetKeyDown = playerInput.actions["Attack"].WasPressedThisFrame();
-        _playerAttackGetKeyUp = playerInput.actions["Attack"].WasReleasedThisFrame();
-        _reloadGetKeyDown = playerInput.actions["Reload"].WasPressedThisFrame();
+        _playerAttack = playerInput.actions["Attack"];
+        _reload = playerInput.actions["Reload"];
     }
 
     public void Tick()
     {
-        if (_playerAttackGetKeyDown)
+        if (_playerAttack.WasPressedThisFrame())
         {
             _isClick = true;
         }
-        else if (_playerAttackGetKeyUp)
+        else if (_playerAttack.WasReleasedThisFrame())
         {
             _isClick = false;
         }
@@ -54,7 +50,7 @@ public class PlayerActionController : MonoBehaviour
     /// <param name="magazineMax">ç≈ëÂëïíeêî</param>
     public void Reload(int magazine, int magazineMax)
     {
-        if (_reloadGetKeyDown)
+        if (_reload.WasPressedThisFrame())
         {
             magazine = magazineMax;
         }

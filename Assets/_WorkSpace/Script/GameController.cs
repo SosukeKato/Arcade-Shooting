@@ -1,10 +1,22 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
-    private PlayerActionController playerActionController = new();
-    private AudioController audioController = new();
-    private SceneController sceneController = new();
+    private PlayerActionController playerActionController;
+    private AudioController audioController;
+    private SceneController sceneController;
+
+    PlayerInput playerInput;
+
+    void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+
+        playerActionController = new(playerInput);
+        audioController = new();
+        sceneController = new();
+    }
 
     void Start()
     {
