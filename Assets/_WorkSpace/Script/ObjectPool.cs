@@ -5,7 +5,7 @@ using UnityEngine;
 public class PoolData
 {
     public GameObject prefab;
-    public Transform[] activePosition;
+    public Transform[] spawnPosition;
     public List<GameObject> objectList = new();
     public Queue<GameObject> pool = new();
     public int poolSize;
@@ -42,16 +42,16 @@ public class ObjectPool : MonoBehaviour
     /// <summary>
     /// Poolから取得したObjectを生成する
     /// </summary>
-    /// <param name="objectType"></param>
-    /// <param name="quaternion"></param>
-    /// <param name="index"></param>
+    /// <param name="objectType">生成するオブジェクト</param>
+    /// <param name="quaternion">オブジェクトの生成する向き</param>
+    /// <param name="index">オブジェクトの生成位置</param>
     public void SpawnObject(PoolType objectType, Quaternion quaternion, int index)
     {
         GameObject bullet = GetObject((int)objectType);
 
         _pdArray[(int)objectType].objectList.Add(bullet);
 
-        bullet.transform.SetPositionAndRotation(_pdArray[(int)objectType].activePosition[index].position, quaternion);
+        bullet.transform.SetPositionAndRotation(_pdArray[(int)objectType].spawnPosition[index].position, quaternion);
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class ObjectPool : MonoBehaviour
     /// PoolにObjectを返却
     /// </summary>
     /// <param name="index"></param>
-    /// <param name="prefab"></param>
+    /// <param name="prefab">返却するオブジェクト</param>
     public void ReturnObject(int index, GameObject prefab)
     {
         if (prefab == null)

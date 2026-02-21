@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
     private PlayerActionController playerActionController;
     private AudioController audioController;
     private SceneController sceneController;
+    private StateController stateController;
 
     PlayerInput playerInput;
 
@@ -16,6 +17,7 @@ public class GameController : MonoBehaviour
         playerActionController = new(playerInput);
         audioController = new();
         sceneController = new();
+        stateController = new();
     }
 
     void Start()

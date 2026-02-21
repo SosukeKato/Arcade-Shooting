@@ -6,6 +6,7 @@ public class PlayerActionController
     InputAction _playerAttack;
     InputAction _reload;
     bool _isClick;
+    float _timer;
 
     /// <summary>
     /// コンストラクタ(なんかピュアクラスで使えるAwake的なものらしい)
@@ -19,6 +20,16 @@ public class PlayerActionController
 
     public void Tick()
     {
+        
+    }
+
+    /// <summary>
+    /// 攻撃の処理
+    /// </summary>
+    /// <param name="_timer">どれくらいの時間攻撃ボタンを押したか</param>
+    /// <param name="attackInterval">攻撃ボタンを押している時間が攻撃のCTを超えたか</param>
+    public void Attack(float attackInterval)
+    {
         if (_playerAttack.WasPressedThisFrame())
         {
             _isClick = true;
@@ -27,20 +38,12 @@ public class PlayerActionController
         {
             _isClick = false;
         }
-    }
 
-    /// <summary>
-    /// 攻撃の処理
-    /// </summary>
-    /// <param name="timer">どれくらいの時間攻撃ボタンを押したか</param>
-    /// <param name="attackInterval">攻撃ボタンを押している時間が攻撃のCTを超えたか</param>
-    public void Attack(float timer, float attackInterval)
-    {
         if (_isClick)
         {
-            timer += Time.deltaTime;
+            _timer += Time.deltaTime;
 
-            if (timer >= attackInterval)
+            if (_timer >= attackInterval)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             }

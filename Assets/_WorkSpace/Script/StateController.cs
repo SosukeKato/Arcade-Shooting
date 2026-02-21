@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class StateController : MonoBehaviour
+public class StateController
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum GameState
     {
-        
+        Title,
+        InGame,
+        GamaClear,
+        GameOver
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum PlayerState
     {
-        
+
     }
 }
