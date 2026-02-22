@@ -37,6 +37,7 @@ public class PlayerActionController
         else if (_playerAttack.WasReleasedThisFrame())
         {
             _isClick = false;
+            _timer = 0;
         }
 
         if (_isClick)
@@ -46,6 +47,7 @@ public class PlayerActionController
             if (_timer >= attackInterval)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                _timer = 0;
             }
         }
     }
