@@ -10,15 +10,13 @@ public enum EnemyState
 
 public class EnemyBase : MonoBehaviour
 {
-    Animator _anim;
+    protected Animator _anim;
 
-    [SerializeField] int _maxHP;
-    [SerializeField] float _animationTime;
+    [SerializeField]  int _maxHP;
 
-    int _currentHP;
-    float _animationTimer;
+    protected int _currentHP;
 
-    EnemyState _currentState;
+    protected EnemyState _currentState;
 
     /// <summary>
     /// 生成タイミングで処理する
@@ -37,10 +35,7 @@ public class EnemyBase : MonoBehaviour
         _currentState = EnemyState.Idle;
     }
 
-    /// <summary>
-    /// 子クラスに委託するUpdate処理
-    /// </summary>
-    void Tick()
+    public virtual void Update()
     {
         if (_currentState == EnemyState.Death)
         {
@@ -49,17 +44,6 @@ public class EnemyBase : MonoBehaviour
                 Destroy(gameObject);//後からObjectPoolのReturnObject()に変更する
             }
         }
-    }
-
-    /// <summary>
-    /// 攻撃処理(Stateが攻撃の時のみ呼び出される)
-    /// </summary>
-    void Attack()
-    {
-        if (_currentState == EnemyState.Attack) return;
-
-        _anim.SetTrigger("Attack");
-        _currentState = EnemyState.Attack;
     }
 
     /// <summary>
