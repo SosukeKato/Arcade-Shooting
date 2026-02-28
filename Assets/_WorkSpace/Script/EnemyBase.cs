@@ -10,13 +10,15 @@ public enum EnemyState
 
 public class EnemyBase : MonoBehaviour
 {
+    protected ObjectPool _objectPool;
     protected Animator _anim;
-
-    [SerializeField]  int _maxHP;
 
     protected int _currentHP;
 
     protected EnemyState _currentState;
+    protected PoolType _poolType;
+
+    [SerializeField]  int _maxHP;
 
     /// <summary>
     /// 生成タイミングで処理する
@@ -24,6 +26,7 @@ public class EnemyBase : MonoBehaviour
     void Awake()
     {
         _anim = GetComponent<Animator>();
+        _objectPool = FindAnyObjectByType<ObjectPool>();
     }
 
     /// <summary>
@@ -41,7 +44,7 @@ public class EnemyBase : MonoBehaviour
         {
             if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Death") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
-                Destroy(gameObject);//後からObjectPoolのReturnObject()に変更する
+                _objectPool.ReturnObject((int)PoolType.Enemy, this.gameObject);
             }
         }
     }

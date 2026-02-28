@@ -13,7 +13,7 @@ public class PoolData
 
 public enum PoolType
 {
-    
+    Enemy
 }
 
 public class ObjectPool : MonoBehaviour
