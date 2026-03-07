@@ -1,14 +1,27 @@
+using UnityEngine.SceneManagement;
+
+public enum GameState
+{
+    Title,
+    InGame,
+    GamaClear,
+    GameOver
+}
+
+public enum PlayerState
+{
+    Move,
+    Encount
+}
+
 public class StateController
 {
-    public enum GameState
+    public StateController()
     {
-        Title,
-        InGame,
-        GamaClear,
-        GameOver
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public enum PlayerState
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
 
     }
