@@ -3,10 +3,10 @@ using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
-    private PlayerActionController playerActionController;
-    private AudioController audioController;
-    private SceneController sceneController;
-    private StateController stateController;
+    private PlayerActionController _playerActionController;
+    private AudioController _audioController;
+    private SceneController _sceneController;
+    private StateController _stateController;
 
     PlayerInput playerInput;
 
@@ -14,10 +14,10 @@ public class GameController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
 
-        playerActionController = new(playerInput);
-        audioController = new();
-        sceneController = new();
-        stateController = new();
+        _playerActionController = new(playerInput);
+        _audioController = new();
+        _sceneController = new();
+        _stateController = new();
     }
 
     void Start()
@@ -27,6 +27,6 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        playerActionController.Tick();
+        _playerActionController.Tick();
     }
 }

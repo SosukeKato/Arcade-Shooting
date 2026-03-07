@@ -28,7 +28,8 @@ public class PlayerActionController
     /// </summary>
     /// <param name="_timer">どれくらいの時間攻撃ボタンを押したか</param>
     /// <param name="attackInterval">攻撃ボタンを押している時間が攻撃のCTを超えたか</param>
-    public void Attack(float attackInterval)
+    /// <param name="magazine">残弾数</param>
+    public void Attack(float attackInterval, int magazine)
     {
         if (_playerAttack.WasPressedThisFrame())
         {
@@ -44,14 +45,15 @@ public class PlayerActionController
         {
             _timer += Time.deltaTime;
 
-            if (_timer >= attackInterval)
+            if (_timer >= attackInterval && magazine >= 0)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                magazine--;
                 _timer = 0;
             }
         }
     }
-
+    
     /// <summary>
     /// リロードの処理
     /// </summary>
